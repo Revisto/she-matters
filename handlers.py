@@ -36,7 +36,7 @@ def callback_query(call):
             temp_messages.to_delete[message_id] = list()
         bot.send_message(config.ADMIN_TELEGRAM_ID, "Clicked on done.")
     elif call.data == "snooze":
-        threading.Timer(5 * 60, set_reminder_schedule, args=(2 * 60, beep, config.TARGET_TELEGRAM_ID, message_id, message_id)).start()
+        threading.Timer(10 * 60, set_reminder_schedule, args=(2 * 60, beep, config.TARGET_TELEGRAM_ID, message_id, message_id)).start()
         bot.answer_callback_query(call.id, "Snoozed")
         bot.send_message(config.ADMIN_TELEGRAM_ID, "Snoozed.")
 
@@ -50,7 +50,7 @@ def cancel_reminder_schedule(tag):
 
 def set_reminder(text, remind_each_minute, message_id):
     remind_each_second = remind_each_minute * 60
-    bot.send_message(config.TARGET_TELEGRAM_ID, text, reply_markup=gen_markup(5))
+    bot.send_message(config.TARGET_TELEGRAM_ID, text, reply_markup=gen_markup(10))
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent scheduled text.")
     set_reminder_schedule(remind_each_second, beep, config.TARGET_TELEGRAM_ID, message_id, message_id)
 
