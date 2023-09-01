@@ -67,9 +67,11 @@ def woke_up(message):
     threading.Timer(15 * 60, set_reminder, args=(ReminderTexts.meds_12_hour_morning_text(), 5, message.id)).start()
     threading.Timer(12 * 60 * 60, set_reminder, args=(ReminderTexts.meds_12_hour_night_text(), 10, message.id)).start()
     
+    threading.Timer(15 * 60, set_reminder, args=(ReminderTexts.meds_8_hour_text(), 10, message.id)).start()
     threading.Timer(7 * 60 * 60, set_reminder, args=(ReminderTexts.meds_8_hour_text(), 10, message.id)).start()
     threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts.meds_8_hour_text(), 10, message.id)).start()
 
+    threading.Timer(15 * 60, set_reminder, args=(ReminderTexts.meds_6_hour_text(), 10, message.id)).start()
     threading.Timer(5 * 60 * 60, set_reminder, args=(ReminderTexts.meds_6_hour_text(), 10, message.id)).start()
     threading.Timer(10 * 60 * 60, set_reminder, args=(ReminderTexts.meds_6_hour_text(), 10, message.id)).start()
     threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts.meds_6_hour_text(), 10, message.id)).start()
