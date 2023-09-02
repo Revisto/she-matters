@@ -2,6 +2,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot import bot
 import schedule
 import threading
+from fuzzywuzzy import fuzz
 import config
 from views import ReminderTexts
 
@@ -12,6 +13,20 @@ class Snooze:
 class TempMessages:
     def __init__(self) -> None:
         self.to_delete = dict()
+
+
+def find_tag(input_string, dictionary=ReminderTexts().messages_tag()):
+    closest_key = None
+    highest_similarity = -1
+
+    for key in dictionary.keys():
+        similarity = fuzz.ratio(input_string, key)
+        if similarity > highest_similarity:
+            highest_similarity = similarity
+            closest_key = key
+
+    return dictionary[closest_key]
+
 
 snooze = Snooze()
 temp_messages = TempMessages()
@@ -25,7 +40,7 @@ def gen_markup(snooze):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
-    tag = ReminderTexts().messages_tag()[call.message.text]
+    tag = find_tag(call.message.text)
     cancel_reminder_schedule(tag)
     if call.data == "done":
         bot.edit_message_reply_markup(call.from_user.id, call.message.id)
