@@ -88,11 +88,6 @@ def woke_up(message):
     threading.Timer(7 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 10, "meds_8_hour_text")).start()
     threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 10, "meds_8_hour_text")).start()
 
-    threading.Timer(15 * 60, set_reminder, args=(ReminderTexts().meds_6_hour_text(), 10, "meds_6_hour_text")).start()
-    threading.Timer(5 * 60 * 60, set_reminder, args=(ReminderTexts().meds_6_hour_text(), 10, "meds_6_hour_text")).start()
-    threading.Timer(10 * 60 * 60, set_reminder, args=(ReminderTexts().meds_6_hour_text(), 10, "meds_6_hour_text")).start()
-    threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts().meds_6_hour_text(), 10, "meds_6_hour_text")).start()
-
     threading.Timer(12.01 * 60 * 60, set_reminder, args=(ReminderTexts().meds_night(), 10, "meds_night")).start()
 
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
@@ -132,11 +127,6 @@ def only_meds_night(message):
 @bot.message_handler(commands=['only_meds_8_hour'])
 def only_meds_8_hour(message):
     threading.Timer(0, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 2, "meds_8_hour_text")).start()
-    bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
-
-@bot.message_handler(commands=['only_meds_6_hour'])
-def only_meds_6_hour(message):
-    threading.Timer(0, set_reminder, args=(ReminderTexts().meds_6_hour_text(), 2, "meds_6_hour_text")).start()
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
 
 
