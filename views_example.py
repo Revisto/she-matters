@@ -55,7 +55,7 @@ class ReminderTexts:
     def took_medicine(self):
         return ""
     
-    def snooze(snooze_time):
+    def snooze(self, snooze_time):
         return f""
     
     def beep(self):
