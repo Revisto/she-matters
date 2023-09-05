@@ -65,3 +65,11 @@ class ReminderTexts:
     def start(self):
         message = "She Matters :)"
         return message
+    
+    def tooth_care(self):
+        message = """"""
+        return message
+    
+    def tooth_care_markup(self):
+        return ""
+    
