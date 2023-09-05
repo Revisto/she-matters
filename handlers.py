@@ -67,7 +67,7 @@ def cancel_reminder_schedule(tag):
 
 def set_reminder(text, remind_each_minute, message_id, markup_done_text=ReminderTexts().took_medicine()):
     remind_each_second = remind_each_minute * 60
-    bot.send_message(config.TARGET_TELEGRAM_ID, text, reply_markup=gen_markup(10))
+    bot.send_message(config.TARGET_TELEGRAM_ID, text, reply_markup=gen_markup(10, markup_done_text))
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent scheduled text.")
     set_reminder_schedule(remind_each_second, beep, config.TARGET_TELEGRAM_ID, message_id)
 
@@ -134,10 +134,9 @@ def only_meds_8_hour(message):
     threading.Timer(0, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 2, "meds_8_hour_text")).start()
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
 
-
-@bot.message_handler(commands=['only_tooth'])
-def only_tooth(message):
-    threading.Timer(0, set_reminder, args=(ReminderTexts().tooth_care(), 2, "tooth_care", ReminderTexts().tooth_care_markup())).start()
+@bot.message_handler(commands=['only_tooth_care'])
+def only_tooth_care(message):
+    threading.Timer(0, set_reminder, args=(ReminderTexts().tooth_care(), 2, "tooth_care")).start()
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
 
 
