@@ -13,6 +13,7 @@ class ReminderTexts:
             self.meds_before_dinner(): "meds_before_dinner", 
             self.meds_meanwhile_dinner(): "meds_meanwhile_dinner", 
             self.meds_night(): "meds_night", 
+            self.tooth_care(): "tooth_care",
         }
         return messages_tag
     
