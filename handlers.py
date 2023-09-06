@@ -79,21 +79,21 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['woke_up'])
 def woke_up(message):
-    threading.Timer(0, set_reminder, args=(ReminderTexts().meds_before_breakfast_text(), 10, "meds_before_breakfast_text")).start()
+    threading.Timer(0, set_reminder, args=(ReminderTexts().meds_before_breakfast_text(), 7, "meds_before_breakfast_text")).start()
     
     threading.Timer(15 * 60, set_reminder, args=(ReminderTexts().meds_12_hour_morning_text(), 5, "meds_12_hour_morning_text")).start()
-    threading.Timer(12 * 60 * 60, set_reminder, args=(ReminderTexts().meds_12_hour_night_text(), 10, "meds_12_hour_night_text")).start()
+    threading.Timer(12 * 60 * 60, set_reminder, args=(ReminderTexts().meds_12_hour_night_text(), 5, "meds_12_hour_night_text")).start()
     
-    threading.Timer(15 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 10, "meds_8_hour_text")).start()
-    threading.Timer(7 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 10, "meds_8_hour_text")).start()
-    threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 10, "meds_8_hour_text")).start()
+    threading.Timer(15 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 5, "meds_8_hour_text")).start()
+    threading.Timer(7 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 5, "meds_8_hour_text")).start()
+    threading.Timer(14 * 60 * 60, set_reminder, args=(ReminderTexts().meds_8_hour_text(), 5, "meds_8_hour_text")).start()
 
-    threading.Timer(12.01 * 60 * 60, set_reminder, args=(ReminderTexts().meds_night(), 10, "meds_night")).start()
+    threading.Timer(12.01 * 60 * 60, set_reminder, args=(ReminderTexts().meds_night(), 5, "meds_night")).start()
 
-    threading.Timer(60, set_reminder, args=(ReminderTexts().tooth_care(), 10, "tooth_care", ReminderTexts().tooth_care_markup())).start()
-    threading.Timer(5 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 10, "tooth_care", ReminderTexts().tooth_care_markup())).start()
-    threading.Timer(10 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 10, "tooth_care", ReminderTexts().tooth_care_markup())).start()
-    threading.Timer(14.01 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 10, "tooth_care", ReminderTexts().tooth_care_markup())).start()
+    threading.Timer(60, set_reminder, args=(ReminderTexts().tooth_care(), 5, "tooth_care", ReminderTexts().tooth_care_markup())).start()
+    threading.Timer(5 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 5, "tooth_care", ReminderTexts().tooth_care_markup())).start()
+    threading.Timer(10 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 5, "tooth_care", ReminderTexts().tooth_care_markup())).start()
+    threading.Timer(14.01 * 60 * 60, set_reminder, args=(ReminderTexts().tooth_care(), 5, "tooth_care", ReminderTexts().tooth_care_markup())).start()
 
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
 
@@ -136,7 +136,7 @@ def only_meds_8_hour(message):
 
 @bot.message_handler(commands=['only_tooth_care'])
 def only_tooth_care(message):
-    threading.Timer(0, set_reminder, args=(ReminderTexts().tooth_care(), 2, "tooth_care")).start()
+    threading.Timer(0, set_reminder, args=(ReminderTexts().tooth_care(), 2, "tooth_care", ReminderTexts().tooth_care_markup())).start()
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent it.")
 
 
