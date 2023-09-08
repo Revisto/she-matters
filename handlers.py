@@ -51,25 +51,26 @@ def callback_query(call):
             temp_messages.to_delete[tag] = list()
         bot.send_message(config.ADMIN_TELEGRAM_ID, "Clicked on done.")
     elif call.data == "snooze":
-        threading.Timer(10 * 60, set_reminder_schedule, args=(2 * 60, beep, config.TARGET_TELEGRAM_ID, tag)).start()
+        threading.Timer(10 * 60, set_reminder_schedule, args=(2 * 60, beep, config.TARGET_TELEGRAM_ID, tag, True)).start()
         bot.answer_callback_query(call.id, "Snoozed")
         bot.send_message(config.ADMIN_TELEGRAM_ID, "Snoozed.")
 
-def set_reminder_schedule(remind_each, job, telegram_id, tag):
+def set_reminder_schedule(remind_each, job, telegram_id, tag, snoozed=False):
     if tag in snooze.cancel_tags:
         snooze.cancel_tags.remove(tag)
-        return
+        if snoozed:
+            return
     
     schedule.every(remind_each).seconds.do(job, telegram_id, tag).tag(tag)
 
 def cancel_reminder_schedule(tag):
     schedule.clear(tag)
 
-def set_reminder(text, remind_each_minute, message_id, markup_done_text=ReminderTexts().took_medicine()):
+def set_reminder(text, remind_each_minute, tag, markup_done_text=ReminderTexts().took_medicine()):
     remind_each_second = remind_each_minute * 60
     bot.send_message(config.TARGET_TELEGRAM_ID, text, reply_markup=gen_markup(10, markup_done_text))
     bot.send_message(config.ADMIN_TELEGRAM_ID, "Sent scheduled text.")
-    set_reminder_schedule(remind_each_second, beep, config.TARGET_TELEGRAM_ID, message_id)
+    set_reminder_schedule(remind_each_second, beep, config.TARGET_TELEGRAM_ID, tag)
 
 
 
