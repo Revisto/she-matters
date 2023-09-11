@@ -14,6 +14,7 @@ class ReminderTexts:
             self.meds_meanwhile_dinner(): "meds_meanwhile_dinner", 
             self.meds_night(): "meds_night", 
             self.tooth_care(): "tooth_care",
+            self.dental_floss(): "dental_floss",
         }
         return messages_tag
     
@@ -50,6 +51,10 @@ class ReminderTexts:
         return message
     
     def meds_night(self):
+        message = """"""
+        return message
+    
+    def dental_floss(self):
         message = """"""
         return message
     
